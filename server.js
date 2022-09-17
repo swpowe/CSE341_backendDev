@@ -5,7 +5,7 @@ const app = express();
 
 const routes = require('./routes/index');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 
 // app.get("/", (req, res) => {
 //     res.send('<html><h1>Spencer Powell</h1></html>')
