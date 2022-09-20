@@ -14,21 +14,21 @@ const showContacts = (req, res) => {
 };
 
 const showContact = (req, res) => {
-  const id = req.query.id;
-  console.log(`id: ${id}`);
+  let id = req.query.id;
+  // console.log(`id: ${id}`);
 
   mongoDb_Connect(listContact, id).catch(console.error);
   res.send("<html><h1>Contact Page</h1></html>");
 };
 
-async function mongoDb_Connect(callback) {
+async function mongoDb_Connect(callback, id) {
   const uri = `mongodb+srv://${mongodb_username}:${mongodb_password}@cluster0.ku9wvjq.mongodb.net/?retryWrites=true&w=majority`;
 
   const client = new MongoClient(uri);
 
   try {
     await client.connect();
-    await callback(client);
+    await callback(client, id);
   } catch (e) {
     console.error(e);
   } finally {
@@ -43,11 +43,11 @@ async function listContacts(client) {
   await contacts.forEach((contact) => console.log(` - ${contact.firstName}`));
 }
 
-async function listContact(client, findId) {
-  const contact = await client.db("assignments").collection("contacts").find(ObjectId(findId));
+async function listContact(client, id) {
+  const contact = await client.db("assignments").collection("contacts").findOne({ _id: new ObjectId(id)});
   
   console.log("Contact:");
-  console.log(contact.lastName);
+  console.log(contact);
 }
 
 async function listDatabases(client) {
