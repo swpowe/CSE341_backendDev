@@ -1,4 +1,4 @@
-const {MongoClient} = require("mongodb");
+const {MongoClient, ObjectId} = require("mongodb");
 
 const mongodb_username = process.env.MONGO_USR;
 const mongodb_password = process.env.MONGO_PWD;
@@ -9,9 +9,16 @@ const showName = (req, res) => {
 };
 
 const showContacts = (req, res) => {
-  // mongoDb_Connect(listDatabases).catch(console.error);
   mongoDb_Connect(listContacts).catch(console.error);
   res.send("<html><h1>Contacts Page</h1></html>");
+};
+
+const showContact = (req, res) => {
+  const id = req.query.id;
+  console.log(`id: ${id}`);
+
+  mongoDb_Connect(listContact, id).catch(console.error);
+  res.send("<html><h1>Contact Page</h1></html>");
 };
 
 async function mongoDb_Connect(callback) {
@@ -29,14 +36,19 @@ async function mongoDb_Connect(callback) {
   }
 }
 
-async function listContacts(client, res) {
+async function listContacts(client) {
   const contacts = await client.db("assignments").collection("contacts").find();
   
-
   console.log("Contacts:");
   await contacts.forEach((contact) => console.log(` - ${contact.firstName}`));
 }
 
+async function listContact(client, findId) {
+  const contact = await client.db("assignments").collection("contacts").find(ObjectId(findId));
+  
+  console.log("Contact:");
+  console.log(contact.lastName);
+}
 
 async function listDatabases(client) {
   databaseList = await client.db().admin().listDatabases();
@@ -45,4 +57,4 @@ async function listDatabases(client) {
   databaseList.databases.forEach((db) => console.log(` - ${db.name}`));
 }
 
-module.exports = {showName, showContacts};
+module.exports = {showName, showContacts, showContact};
