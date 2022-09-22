@@ -19,14 +19,19 @@ const showContact = async (req, res) => {
 
   const data = await mongoDb_Connect(listContact, id)
   .then((d) => {
-    console.log(d.firstName);
-    for (const prop in d) {
-      if (Object.hasOwnProperty.call(d, prop)) {
-        const element = d[prop];
-        res.write(`<h1>${prop} : ${element}</h1>`)
-      }
-    }
-    res.end()
+    console.log(typeof(JSON.stringify(d)));
+    // for (const prop in d) {
+    //   if (Object.hasOwnProperty.call(d, prop)) {
+    //     const element = d[prop];
+    //     res.write(`<h1>${prop} : ${element}</h1>`)
+    //   }
+    // }
+    // res.end()
+    let string = 
+    res.header("Content-Type",'application/json');
+    // res.send(JSON.stringify(d, null, '\r\n'));
+    res.send(JSON.stringify(d, null, 2));
+    // res.json(d);
   })
   .catch(console.error)
 };
