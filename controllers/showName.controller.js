@@ -13,12 +13,22 @@ const showContacts = (req, res) => {
   res.send("<html><h1>Contacts Page</h1></html>");
 };
 
-const showContact = (req, res) => {
+const showContact = async (req, res) => {
   let id = req.query.id;
   // console.log(`id: ${id}`);
 
-  mongoDb_Connect(listContact, id).catch(console.error);
-  res.send("<html><h1>Contact Page</h1></html>");
+  const data = await mongoDb_Connect(listContact, id)
+  .then((d) => {
+    console.log(d.firstName);
+    for (const prop in d) {
+      if (Object.hasOwnProperty.call(d, prop)) {
+        const element = d[prop];
+        res.write(`<h1>${prop} : ${element}</h1>`)
+      }
+    }
+    res.end()
+  })
+  .catch(console.error)
 };
 
 async function mongoDb_Connect(callback, id) {
@@ -28,7 +38,8 @@ async function mongoDb_Connect(callback, id) {
 
   try {
     await client.connect();
-    await callback(client, id);
+    const contact = await callback(client, id);
+    return contact;
   } catch (e) {
     console.error(e);
   } finally {
@@ -48,6 +59,7 @@ async function listContact(client, id) {
   
   console.log("Contact:");
   console.log(contact);
+  return contact;
 }
 
 async function listDatabases(client) {
