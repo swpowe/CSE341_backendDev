@@ -43,7 +43,7 @@ const showContact = async (req, res) => {
 };
 
 async function mongoDb_Connect(callback, id) {
-  const uri = `mongodb+srv://${mongodb_username}:${mongodb_password}@cluster0.ku9wvjq.mongodb.net/?retryWrites=true&w=majority`;
+  const uri = `mongodb+srv://${mongodb_username}:${mongodb_password}@cluster0.ku9wvjq.mongodb.net/?retryWrites=true&w=majority&authSource=admin`;
 
   const client = new MongoClient(uri);
 
