@@ -8,16 +8,23 @@ const showName = (req, res) => {
   res.send("<html><h1>Spencer Powell says 'Hello World'</h1></html>");
 };
 
-const showContacts = (req, res) => {
-  mongoDb_Connect(listContacts).catch(console.error);
-  res.send("<html><h1>Contacts Page</h1></html>");
+const showContacts = async (req, res) => {
+  await mongoDb_Connect(listContacts)
+  .then((contacts) => {
+    for (let i = 0; i < contacts.length; i++) {
+      const element = contacts[i];
+      res.write(JSON.stringify(element, null, 2));
+      
+    }
+    res.end()
+  })
+  .catch(console.error);
 };
 
 const showContact = async (req, res) => {
   let id = req.query.id;
-  // console.log(`id: ${id}`);
 
-  const data = await mongoDb_Connect(listContact, id)
+  await mongoDb_Connect(listContact, id)
   .then((d) => {
     console.log(typeof(JSON.stringify(d)));
     // for (const prop in d) {
@@ -27,7 +34,6 @@ const showContact = async (req, res) => {
     //   }
     // }
     // res.end()
-    let string = 
     res.header("Content-Type",'application/json');
     // res.send(JSON.stringify(d, null, '\r\n'));
     res.send(JSON.stringify(d, null, 2));
@@ -54,9 +60,9 @@ async function mongoDb_Connect(callback, id) {
 
 async function listContacts(client) {
   const contacts = await client.db("assignments").collection("contacts").find();
-  
-  console.log("Contacts:");
-  await contacts.forEach((contact) => console.log(` - ${contact.firstName}`));
+  const contactsArray = await contacts.toArray();
+  await contacts.forEach((contact) => console.log(` - ${JSON.stringify(contact)}`));
+  return contactsArray;
 }
 
 async function listContact(client, id) {
