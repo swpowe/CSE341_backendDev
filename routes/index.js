@@ -15,8 +15,8 @@ const {
 
 const {
   addContact,
-  modifyContact,
-  deleteContact,
+  // modifyContact,
+  // deleteContact,
 } = require('../controllers/contact.controller');
 
 router.get('/', showName);
@@ -34,11 +34,11 @@ router.post('/contact-add', addContact);
 // ## PUT route to update a contact
 // ## ex. api-url-path/contacts/id-to-modify
 // ## returns success status code
-router.put('/contact-modify', modifyContact);
+// !!router.put('/contact-modify', modifyContact);
 
 // ## DELETE route to delete a contact
 // ## returns a success status code
-router.delete('/contact-delete', deleteContact);
+// !!router.delete('/contact-delete', deleteContact);
 
 // ## rest file
 
