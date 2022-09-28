@@ -15,8 +15,8 @@ const {
 
 const {
   addContact,
-  // modifyContact,
-  // deleteContact,
+  modifyContact,
+  deleteContact,
 } = require('../controllers/contact.controller');
 
 router.get('/', showName);
@@ -27,18 +27,17 @@ router.get('/contact', showContact);
 // Lesson 3 Personal Assignment
 // ## POST route to create a new contact
 // ## returns the new contact ID
-// ## returns success status code
-// router.get('/contact-add', addContact);
+// ## returns success (201) status code
 router.post('/contact-add', addContact);
 
 // ## PUT route to update a contact
 // ## ex. api-url-path/contacts/id-to-modify
-// ## returns success status code
-// !!router.put('/contact-modify', modifyContact);
+// ## returns success (204) status code
+router.put('/contact-modify', modifyContact);
 
 // ## DELETE route to delete a contact
-// ## returns a success status code
-// !!router.delete('/contact-delete', deleteContact);
+// ## returns a success (200) status code
+router.delete('/contact-delete', () => {console.log('here')});
 
 // ## rest file
 

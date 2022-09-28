@@ -1,18 +1,24 @@
 require('dotenv').config();
 
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
+const mongodb = require('./db/connect');
 
+const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 const routes = require('./routes/index');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 
 app.use(routes);
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+mongodb.initDb((err, mongodb) => {
+  if (err) {
+    console.log(err);
+  } else {
+    app.listen(port);
+    console.log(`Connected to DB and listening on ${port}`);
+  }
 });
