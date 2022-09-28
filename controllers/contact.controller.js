@@ -26,16 +26,15 @@ const addContact = async (req, res) => {
 };
 
 const deleteContact = async (req, res) => {
-  console.log('inside')
   const id = req.body.deleteId;
   console.log(id);
   // await client.db("assignments").collection("contacts").findOne({ _id: new ObjectId(id)});
-  try {
-    await client.db("assignments").collection("contacts").deleteOne({"_id" : ObjectId(id)});
-    res.status(201).send(`Deleted id: ${id}`);
-  } catch (e) {
-    console.log(e);
-  }
+  // try {
+  //   await client.db("assignments").collection("contacts").deleteOne({"_id" : ObjectId(id)});
+  //   res.status(201).send(`Deleted id: ${id}`);
+  // } catch (e) {
+  //   console.log(e);
+  // }
 };
 
 const modifyContact = () => {};

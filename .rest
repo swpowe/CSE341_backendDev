@@ -3,3 +3,7 @@ http://localhost:3000/contacts
 ###
 
 http://localhost:3000/contact?id=6329195868ac3323a5ccc4b6
+
+###
+
+DELETE http://localhost:8080/123466
