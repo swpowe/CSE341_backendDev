@@ -13,6 +13,7 @@ const {
 } = require("../controllers/showName.controller");
 
 const {
+  displayContacts,
   addContact,
   modifyContact,
   deleteContact,
@@ -20,7 +21,7 @@ const {
 
 router.get("/", showName);
 
-router.get("/contacts", showContacts);
+router.get("/contacts", displayContacts);
 router.get("/contact", showContact);
 
 // Lesson 3 Personal Assignment

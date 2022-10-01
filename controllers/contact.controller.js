@@ -47,4 +47,4 @@ const displayContacts = async (req, res) => {
   });
 };
 
-module.exports = { addContact, deleteContact, modifyContact };
+module.exports = { displayContacts, addContact, deleteContact, modifyContact };
