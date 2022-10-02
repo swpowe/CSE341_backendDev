@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Website</title>
+    <title>Contacts Form</title>
   </head>
   <body>
     <form action="http://localhost:8080/contact-add" method="POST">
@@ -45,11 +45,7 @@
       />
       <button type="submit">submit</button>
     </form>
-    <form
-      name="delete"
-      action="http://localhost:8080/delete"
-      method="POST"
-    >
+    <form name="delete" action="http://localhost:8080/delete" method="POST">
       <input
         type="text"
         name="deleteId"
@@ -58,7 +54,37 @@
       />
       <button type="submit">Delete</button>
     </form>
-    <form action="http://localhost:8080/contacts">
+    <form action="http://localhost:8080/contact-modify" method="post">
+      <input
+        type="text"
+        name="firstName"
+        id="firstName"
+        placeholder="First Name"
+      />
+      <input
+        type="text"
+        name="lastName"
+        id="lastName"
+        placeholder="Last Name"
+      />
+      <input type="email" name="email" id="email" placeholder="Email Address" />
+      <input
+        type="text"
+        name="favoriteColor"
+        id="favoriteColor"
+        placeholder="Favorite Color"
+      />
+      <input type="date" name="birthday" id="birthday" placeholder="Birthday" />
+      <input
+        type="text"
+        name="contactId"
+        id="contactId"
+        required
+        placeholder="Contact Id to Modify"
+      />
+      <button>Modify Contact</button>
+    </form>
+    <form action="http://localhost:8080/contacts" method="get">
       <button type="submit">Display Contacts</button>
     </form>
   </body>

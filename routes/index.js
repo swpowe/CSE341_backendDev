@@ -33,7 +33,7 @@ router.post("/contact-add", addContact);
 // ## PUT route to update a contact
 // ## ex. api-url-path/contacts/id-to-modify
 // ## returns success (204) status code
-router.put("/contact-modify", modifyContact);
+router.post("/contact-modify", modifyContact);
 
 // ## DELETE route to delete a contact
 // ## returns a success (200) status code
