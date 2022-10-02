@@ -38,3 +38,4 @@ db.sales.aggregate(aggregation);
 
 use('assignments');
 db.contacts.find();
+db.contacts.drop();

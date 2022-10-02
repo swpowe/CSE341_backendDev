@@ -7,7 +7,7 @@
     <title>Contacts Form</title>
   </head>
   <body>
-    <form action="http://localhost:8080/contact-add" method="POST">
+    <form action="http://localhost:8080/addContact" method="POST">
       <input
         type="text"
         name="firstName"
@@ -45,7 +45,7 @@
       />
       <button type="submit">submit</button>
     </form>
-    <form name="delete" action="http://localhost:8080/delete" method="POST">
+    <form name="delete" action="http://localhost:8080/deleteContact" method="POST">
       <input
         type="text"
         name="deleteId"
@@ -54,7 +54,7 @@
       />
       <button type="submit">Delete</button>
     </form>
-    <form action="http://localhost:8080/contact-modify" method="post">
+    <form action="http://localhost:8080/modifyContact" method="post">
       <input
         type="text"
         name="firstName"

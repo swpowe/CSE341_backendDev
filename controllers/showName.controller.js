@@ -8,12 +8,12 @@ const showName = (req, res) => {
   res.send("<html><h1>Spencer Powell says 'Hello World'</h1></html>");
 };
 
-const showContacts = (req, res) => {
+const displayContacts = (req, res) => {
   mongoDb_Connect(listContacts).catch(console.error);
   res.send("<html><h1>Contacts Page</h1></html>");
 };
 
-const showContact = (req, res) => {
+const displaySingleContact = (req, res) => {
   let id = req.query.id;
   // console.log(`id: ${id}`);
 
@@ -57,4 +57,4 @@ async function listDatabases(client) {
   databaseList.databases.forEach((db) => console.log(` - ${db.name}`));
 }
 
-module.exports = {showName, showContacts, showContact};
+module.exports = {showName, displayContacts, displaySingleContact};

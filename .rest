@@ -1,38 +1,41 @@
-http://localhost:8080/contacts
+GET http://localhost:8080/contacts
 
 ###
 
-http://localhost:3000/contact?id=6329195868ac3323a5ccc4b6
+http://localhost:8080/contact?id=6329195868ac3323a5ccc4b6
 
 ###
 
-POST http://localhost:8080/contact-add HTTP/1.1
+POST http://localhost:8080/addContact HTTP/1.1
 Content-Type: application/json
 
 {
-    "firstName": "Rest",
-    "lastName": "client",
-    "email": "rest@email.com",
+    "firstName": "Steve 3",
+    "lastName": "Jobs",
+    "email": "steve.jobs@email.com",
     "favoriteColor": "blue",
     "birthday": "01/23/2022"
 }
 
 ###
 
-POST http://localhost:8080/contact-modify HTTP/1.1
+PUT http://localhost:8080/modifyContact HTTP/1.1
 Content-Type: application/json
 
 {
-    "firstName": "steve",
-    "lastName": "bonkers",
-    "contactId": "6329197468ac3323a5ccc4b7"
+    //"firstName": "steve",
+    //"lastName": "bonkers",
+    //"email": "maxTest@email.com",
+    //"favoriteColor": "Auburn",
+    //"birthday": "01/20/2034",
+    "contactId": "6339ad8109bb119d85d6cb0b"
 }
 
 ###
 
-POST http://localhost:8080/delete HTTP/1.1
+DELETE http://localhost:8080/deleteContact HTTP/1.1
 Content-Type: application/json
 
 {
-    "deleteId": "633110a5a00df9a008d53e62"
+    "deleteId": "6339ac53c3417dae9473effe"
 }

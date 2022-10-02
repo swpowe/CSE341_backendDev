@@ -49,7 +49,7 @@ const modifyContact = async (req, res) => {
       .getDb()
       .db()
       .collection("contacts")
-      .updateOne({ _id: ObjectId(id) }, {$set: {firstName: data.firstName, lastName: data.lastName, email: data.email, favoriteColor: data.favoriteColor, birthday: data.birthday}});
+      .updateOne({ _id: ObjectId(id) }, {$max: {firstName: data.firstName, lastName: data.lastName, email: data.email, favoriteColor: data.favoriteColor, birthday: data.birthday}});
     res.status(204).send(`Modified id: ${id}`);
   } catch (e) {
     console.log(e);
