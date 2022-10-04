@@ -35,18 +35,17 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:8080/deleteContact HTTP/1.1
-
+DELETE http://localhost:8080/deleteContact/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "deleteId": "633b948b80f1c54edb201f19"
+    "deleteId": "633b9d8f182c40b705cfa95b"
 }
 
 ###
 
 
-//Production
+//Production https://spencerpowell-cse341.onrender.com
 GET https://spencerpowell-cse341.onrender.com/contacts
 
 ###
@@ -92,4 +91,47 @@ Content-Type: application/json
 
 ###
 
-https://spencerpowell-cse341.onrender.com
+//Production https://swpowe.onrender.com
+GET https://swpowe.onrender.com/contacts
+
+###
+
+//PUT https://swpowe.onrender.com/contact?id=6329195868ac3323a5ccc4b6
+
+###
+
+POST https://swpowe.onrender.com/addContact HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "Steve 5",
+    "lastName": "Jobs 5",
+    "email": "steve.jobs@email.com",
+    "favoriteColor": "blue",
+    "birthday": "01/23/2022"
+}
+
+###
+
+PUT https://swpowe.onrender.com/modifyContact HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "steve MOD 5",
+    //"lastName": "bonkers 2",
+    //"email": "1maxTest-2@email.com",
+    //"favoriteColor": "Auburn 2",
+    //"birthday": "01/20/2034",
+    "contactId": "633bae089a10fce032580621"
+}
+
+###
+
+DELETE https://swpowe.onrender.com/deleteContact HTTP/1.1
+Content-Type: application/json
+
+{
+    "deleteId": "633bae089a10fce032580621"
+}
+
+###
