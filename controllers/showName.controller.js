@@ -13,7 +13,7 @@ const displayContacts = (req, res) => {
   res.send("<html><h1>Contacts Page</h1></html>");
 };
 
-const displaySingleContact = (req, res) => {
+const displaySingleContact = async (req, res) => {
   let id = req.query.id;
 
   await mongoDb_Connect(listContact, id)
