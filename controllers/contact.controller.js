@@ -34,15 +34,15 @@ const deleteContact = async (req, res) => {
 const modifyContact = async (req, res) => {
   const id = req.body.contactId;
   const data = req.body;
-  let newData = {};
-  for (const property in data) {
-    console.log(`${property}: ${data[property]}`);
-    if(property != '' || property != null) {
-      console.log(`${property} added.`);
-      newData.property = data[property]
-    }
-  }
-  console.log(newData);
+  // let newData = {};
+  // for (const property in data) {
+  //   console.log(`${property}: ${data[property]}`);
+  //   if(property != '' || property != null) {
+  //     console.log(`${property} added.`);
+  //     newData.property = data[property]
+  //   }
+  // }
+  // console.log(newData);
   // await client.db("assignments").collection("contacts").findOne({ _id: new ObjectId(id)});
   try {
     await mongodb
