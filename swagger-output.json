@@ -11,15 +11,11 @@
     "http"
   ],
   "paths": {
-    "/": {
+    "/api-docs": {
       "get": {
         "description": "",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": {}
       }
     },
     "/contacts": {
@@ -36,19 +32,26 @@
         }
       }
     },
-    "/contact": {
+    "/contact/{id}": {
       "get": {
         "description": "",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }

@@ -43,7 +43,7 @@ const modifyContact = async (req, res) => {
     console.log(`${property}: ${data[property]}`);
     if (property != '' || property != null) {
       console.log(`${property} added.`);
-      newData.property = data[property]
+      newData.property = data[property];
     }
   }
   console.log(newData);
@@ -53,7 +53,18 @@ const modifyContact = async (req, res) => {
         .getDb()
         .db()
         .collection('contacts')
-        .updateOne({_id: ObjectId(id)}, {$max: {firstName: data.firstName, lastName: data.lastName, email: data.email, favoriteColor: data.favoriteColor, birthday: data.birthday}});
+        .updateOne(
+            {_id: ObjectId(id)},
+            {
+              $max: {
+                firstName: data.firstName,
+                lastName: data.lastName,
+                email: data.email,
+                favoriteColor: data.favoriteColor,
+                birthday: data.birthday,
+              },
+            },
+        );
     res.status(204).send(`Modified id: ${id}`);
   } catch (e) {
     console.log(e);
@@ -61,7 +72,7 @@ const modifyContact = async (req, res) => {
   }
 };
 
-const displayContacts = async (req, res) => {
+const getAllContacts = async (req, res) => {
   const result = await mongodb.getDb().db().collection('contacts').find();
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
@@ -69,4 +80,29 @@ const displayContacts = async (req, res) => {
   });
 };
 
-module.exports = {displayContacts, addContact, deleteContact, modifyContact};
+const getOneContact = async (req, res) => {
+  const id = req.params.id;
+  await mongodb
+      .getDb()
+      .db()
+      .collection('contacts')
+      .findOne({_id: new ObjectId(id)}).then((result) => {
+        if (result == null) {
+          res.send('No contact found. Check your ID.')
+        } else {
+          res.setHeader('Content-Type', 'application/json');
+          res.status(200).json(result);
+        }
+      })
+      .catch((error) => {
+        res.status(500).json(error)
+      });
+};
+
+module.exports = {
+  getOneContact,
+  getAllContacts,
+  addContact,
+  deleteContact,
+  modifyContact,
+};

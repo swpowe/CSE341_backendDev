@@ -5,16 +5,9 @@ const router = express.Router();
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger-output.json');
 
-
-
 const {
-  showName,
-  // displayContacts,
-  displaySingleContact,
-} = require('../controllers/showName.controller');
-
-const {
-  displayContacts,
+  getOneContact,
+  getAllContacts,
   addContact,
   modifyContact,
   deleteContact,
@@ -22,13 +15,9 @@ const {
 
 router.use('/api-docs', swaggerUi.serve);
 router.get('/api-docs', swaggerUi.setup(swaggerDocument));
-// router.get('/api-docs', (req, res) => {res.send('<html>docs</html>')});
 
-
-// router.get('/', showName);
-
-router.get('/contacts', displayContacts);
-router.get('/contact', displaySingleContact);
+router.get('/contacts', getAllContacts);
+router.get('/contact/:id', getOneContact);
 
 // Lesson 3 Personal Assignment
 // ## POST route to create a new contact
