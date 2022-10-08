@@ -19,6 +19,7 @@
     "nodemon": "^2.0.19"
   },
   "devDependencies": {
+    "cors": "^2.8.5",
     "eslint": "^8.24.0",
     "eslint-config-google": "^0.14.0",
     "swagger-autogen": "^2.22.0",
