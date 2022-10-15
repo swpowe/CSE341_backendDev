@@ -23,6 +23,40 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:8080/delete-todo HTTP/1.1
+
+
+Content-Type: application/json
+{
+
+}
+###
+
+
+//live
+GET http://swpowe.onrender.com/todos
+###
+
+GET http://swpowe.onrender.com/todo/634772a595f32d6e6d576027
+###
+
+POST http://swpowe.onrender.com/add-todo HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Live 1",
+    "description": "Don't for get this thing description..e.",
+    "LIST_ID": "6346272c696ca496cfbd7b0f"
+}
+###
+
+PUT http://swpowe.onrender.com/modify-todo HTTP/1.1
+Content-Type: application/json
+{
+
+}
+###
+
+DELETE http://swpowe.onrender.com/delete-todo HTTP/1.1
 Content-Type: application/json
 {
 
