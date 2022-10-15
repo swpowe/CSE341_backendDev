@@ -18,7 +18,7 @@
         "responses": {}
       }
     },
-    "/contacts": {
+    "/todos": {
       "get": {
         "description": "",
         "produces": [
@@ -32,12 +32,9 @@
         }
       }
     },
-    "/contact/{id}": {
+    "/todo/{id}": {
       "get": {
         "description": "",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
             "name": "id",
@@ -47,16 +44,13 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
+          "201": {
+            "description": "Created"
           }
         }
       }
     },
-    "/addContact": {
+    "/add-todo": {
       "post": {
         "description": "",
         "parameters": [
@@ -76,75 +70,6 @@
         "responses": {
           "201": {
             "description": "Created"
-          }
-        }
-      }
-    },
-    "/modifyContact": {
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "contactId": {
-                  "example": "any"
-                },
-                "firstName": {
-                  "example": "any"
-                },
-                "lastName": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "favoriteColor": {
-                  "example": "any"
-                },
-                "birthday": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/deleteContact": {
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "deleteId": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
