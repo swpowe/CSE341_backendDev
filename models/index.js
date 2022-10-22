@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const ToDoItem = require('./toDoItem')(mongoose);
+// const Schema = mongoose.Schema;
 
 const addToDoItem = async () => {
   await mongoose.connect(process.env.MONGODB_URI, {dbName: 'new_mongoose'});
 
+  // !! Pull from external file
   const ToDoItem = new Schema({
     title: String,
     description: {
