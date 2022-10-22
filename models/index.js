@@ -1,26 +1,32 @@
-const mongoose = require("mongoose");
-// const ToDoItem = require('./toDoItem')(mongoose);
-const ToDoItem = require("./toDoItem");
-// const Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+
+const User = require('./user');
+const ToDoItem = require('./toDoItem');
+
+const database = 'new_mongoose';
+
+const addUser = async (name, email, pwd) => {
+  await mongoose.connect(process.env.MONGODB_URI, {dbName: database});
+  const user = new User();
+  user.name = name;
+  user.emailAddress = email;
+  user.password = pwd;
+
+  try {
+    const id = await user.save();
+    console.log(`ID created: ${id}`);
+    return id;
+  } catch (error) {
+    console.log(error._message);
+    return error._message;
+  }
+};
 
 const addToDoItem = async () => {
-  await mongoose.connect(process.env.MONGODB_URI, { dbName: "new_mongoose" });
-
-  // !! Pull from external file
-  //   const ToDoItem = new Schema({
-  //     title: String,
-  //     description: {
-  //       type: String,
-  //       required: true,
-  //     },
-  //   });
-
-  //   const MyModel = mongoose.model('ToDo', ToDoItem);
-
-  //   const item = new MyModel();
+  await mongoose.connect(process.env.MONGODB_URI, {dbName: database});
   const item = new ToDoItem();
-  item.title = "pullled apart";
-  item.description = "ToDo item description";
+  item.title = 'pullled apart';
+  item.description = 'ToDo item description';
 
   try {
     const id = await item.save();
@@ -30,4 +36,4 @@ const addToDoItem = async () => {
   }
 };
 
-module.exports = addToDoItem;
+module.exports = {addUser, addToDoItem};

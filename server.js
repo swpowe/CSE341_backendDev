@@ -1,12 +1,14 @@
 /* eslint-disable */
 require('dotenv').config();
 
-const addToDoItem = require('./models/index')
-
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const cors = require('cors');
+
+const port = process.env.PORT || 8080;
+
+const {addUser, addToDoItem} = require('./models/index')
+const routes = require('./routes/index');
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
@@ -14,8 +16,11 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-const port = process.env.PORT || 8080;
+app.use(routes);
 
-console.log(`Connected to DB and listening on ${port}`);
+app.listen(port, console.log(`Connected to DB and listening on ${port}`));
 
-addToDoItem(); // Calls from other file
+
+// addUser();
+
+// !! addToDoItem(); // Calls from other file

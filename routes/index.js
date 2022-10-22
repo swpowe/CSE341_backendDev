@@ -5,6 +5,8 @@ const router = express.Router();
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger-output.json');
 
+const {createUser, createUserForm} = require('../controllers/user.controller');
+
 const {
   getAllTodos,
   getOneTodo,
@@ -13,6 +15,9 @@ const {
 
 router.use('/api-docs', swaggerUi.serve);
 router.get('/api-docs', swaggerUi.setup(swaggerDocument));
+
+router.get('/create-user', createUserForm);
+router.post('/create-user', createUser);
 
 router.get('/todos', getAllTodos);
 router.get('/todo/:id', getOneTodo);
