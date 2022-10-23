@@ -15,6 +15,8 @@ const addUser = async (name, email, pwd) => {
   try {
     const id = await user.save();
     console.log(`ID created: ${id}`);
+    setCurrentUserId(id._id);
+    console.log(`ENV: ${getCurrentUserId()}`);
     return id;
   } catch (error) {
     console.log(error._message);
@@ -35,5 +37,17 @@ const addToDoItem = async () => {
     console.log(error.errors.description.message);
   }
 };
+
+function setCurrentUserId(_id) {
+  process.env['CURRENT_USER_ID'] = _id;
+}
+
+function getCurrentUserId() {
+  if (process.env['CURRENT_USER_ID'] != null) {
+    return process.env['CURRENT_USER_ID'];
+  } else {
+    return 1
+  }
+}
 
 module.exports = {addUser, addToDoItem};
