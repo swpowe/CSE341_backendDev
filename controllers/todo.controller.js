@@ -1,14 +1,26 @@
+/* eslint-disable max-len */
 const mongodb = require('../db/connect');
 const {ObjectId} = require('mongodb');
 
-const {deleteToDoItem, modifyToDoItem} = require('../models/index');
+const {
+  getAllToDoItems,
+  deleteToDoItem,
+  modifyToDoItem,
+} = require('../models/index');
 
 const getAllTodos = async (req, res) => {
-  const todos = await mongodb.getDb().db().collection('todos').find();
-  todos.toArray().then((items) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(items);
-  });
+  const collection = await getAllToDoItems();
+  const todos = collection.find();
+  const count = await collection.countDocuments();
+
+  if (count > 0) {
+    todos.toArray().then((items) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(items);
+    });
+  } else {
+    res.status(200).send('No items to display');
+  }
 };
 
 const getOneTodo = async (req, res) => {
@@ -17,7 +29,18 @@ const getOneTodo = async (req, res) => {
       .db()
       .collection('todos')
       .findOne({_id: new ObjectId(req.params.id)});
-  res.status(201).json(todo);
+
+  if (todo != null) {
+    res.status(201).json(todo);
+  } else {
+    res.status(400).send('<html>No ToDo found with that ID.</html>');
+  }
+  // const todo = await mongodb
+  //     .getDb()
+  //     .db()
+  //     .collection('todos')
+  //     .findOne({_id: new ObjectId(req.params.id)});
+  // res.status(201).json(todo);
 };
 
 const addTodo = async (req, res) => {
