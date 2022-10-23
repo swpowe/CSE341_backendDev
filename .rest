@@ -15,16 +15,15 @@ Content-Type: application/json
 }
 ###
 
-PUT http://localhost:8080/modify-todo HTTP/1.1
-Content-Type: application/json
-{
 
+PUT http://localhost:8080/modify-todo/634f6292aeea432c312f2fdb HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "this",
+    "thing": "wow"
 }
 ###
 
-DELETE http://localhost:8080/delete-todo HTTP/1.1
-Content-Type: application/json
-{
-
-}
+DELETE http://localhost:8080/delete-todo/634f6292aeea432c324f2fdb HTTP/1.1
 ###

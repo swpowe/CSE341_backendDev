@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const User = require('./user');
 const ToDoItem = require('./toDoItem');
+const {ObjectId} = require('mongodb');
 
 const database = 'new_mongoose';
 
@@ -36,4 +37,39 @@ const addToDoItem = async () => {
   }
 };
 
-module.exports = {addUser, addToDoItem};
+const modifyToDoItem = async (id, updates) => {
+  // const id = '634f63fe0d5d8d66e6253d40';
+  await mongoose.connect(process.env.MONGODB_URI, {dbName: database});
+  const connection = mongoose.connection;
+  const collection = connection.db.collection('todos');
+
+  try {
+    const filter = {_id: new ObjectId(id)};
+    // const update = {title: 'this has been updated 3'};
+    const data = await collection.replaceOne(filter, updates, {new: true});
+    console.log(data);
+    // console.log(await collection.findOne(filter));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const deleteToDoItem = async (id) => {
+  console.log(`Delete ID: ${id}`);
+  await mongoose.connect(process.env.MONGODB_URI, {dbName: database});
+  const connection = mongoose.connection;
+  const collection = connection.db.collection('todos');
+
+  try {
+    const filter = {_id: new ObjectId(id)};
+    const data = await collection.deleteOne(filter);
+    console.log(data);
+    return data;
+    
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
+module.exports = {addUser, addToDoItem, deleteToDoItem, modifyToDoItem};
