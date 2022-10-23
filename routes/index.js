@@ -5,19 +5,27 @@ const router = express.Router();
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger-output.json');
 
+const {createUser, createUserForm} = require('../controllers/user.controller');
+// const {modifyToDo} = require('../controllers/todo.controller');
+
 const {
   getAllTodos,
   getOneTodo,
   addTodo,
+  deleteToDo,
+  modifyTodo,
 } = require('../controllers/todo.controller');
 
 router.use('/api-docs', swaggerUi.serve);
 router.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
+router.get('/create-user', createUserForm);
+router.post('/create-user', createUser);
+
 router.get('/todos', getAllTodos);
 router.get('/todo/:id', getOneTodo);
 router.post('/add-todo', addTodo);
-// router.put();
-// router.delete();
+router.put('/modify-todo/:id', modifyTodo);
+router.delete('/delete-todo/:id', deleteToDo);
 
 module.exports = router;
