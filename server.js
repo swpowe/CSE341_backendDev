@@ -5,14 +5,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const app = express();
+
 const mongodb = require('./db/connect');
+const routes = require('./routes/index');
 
 const port = process.env.PORT || 8080;
 
-// const {addUser, addToDoItem} = require('./models/index')
-const routes = require('./routes/index');
-
-const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 

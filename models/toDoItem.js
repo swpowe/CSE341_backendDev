@@ -1,38 +1,14 @@
-const { ObjectId } = require('mongodb');
-const mongoose = require('mongoose');
+const {Schema, model} = require('mongoose');
 
-const toDoItemSchema = new mongoose.Schema({
-  title: {
+const toDoItemSchema = new Schema({
+  name: {
     type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: [true, 'You need to add a description.'],
-  },
-  priority: {
-    type: String,
-    enum: ['Low', 'Medium', 'High'],
-    default: 'Low',
-  },
-  startDate: {
-    type: String,
-  },
-  endDate: {
-    type: String,
-  },
-  completed: {
-    type: Boolean,
-    default: false,
-  },
-  assignedTo: {
-    type: String,
-  },
-  LIST_ID: {
-    type: ObjectId,
-    required: true,
+    require: true,
   },
 });
 
-module.exports = mongoose.model('ToDoItem', toDoItemSchema);
+const ToDoItem = model('ToDoItem', toDoItemSchema);
+
+
+module.exports = ToDoItem;
 

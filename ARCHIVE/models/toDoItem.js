@@ -1,6 +1,7 @@
+const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
 
-const listSchema = new mongoose.Schema({
+const toDoItemSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -27,10 +28,7 @@ const listSchema = new mongoose.Schema({
   assignedTo: {
     type: String,
   },
-  LIST_ID: {
-    type: String,
-  },
 });
 
-module.exports = mongoose.model('List', listSchema);
+module.exports = mongoose.model('ToDoItem', toDoItemSchema);
 
