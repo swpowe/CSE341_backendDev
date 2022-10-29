@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
 
 const toDoItemSchema = new mongoose.Schema({
@@ -28,7 +29,8 @@ const toDoItemSchema = new mongoose.Schema({
     type: String,
   },
   LIST_ID: {
-    type: String,
+    type: ObjectId,
+    required: true,
   },
 });
 

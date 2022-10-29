@@ -20,6 +20,8 @@ app.use(cors());
 
 app.use(routes);
 
+app.set('json spaces', 2); //!! format json responses
+
 mongodb.initDb((err, mongodb) => {
   if (err) {
     console.log(err);
