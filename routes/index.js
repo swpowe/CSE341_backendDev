@@ -1,4 +1,5 @@
 const express = require('express');
+const {requiresAuth} = require('express-openid-connect');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
@@ -24,6 +25,7 @@ router.get('/', (req, res) => {
   // eslint-disable-next-line max-len
   // res.send(req.oidc.isAuthenticated() ? 'Logged in but no callback 2?' : 'Logged out');
   if (req.oidc.isAuthenticated()) {
+    console.log(req);
     testUser();
     // authenticate / load mongo DB connection
   }
@@ -31,6 +33,11 @@ router.get('/', (req, res) => {
     req.oidc.isAuthenticated() ? 'Logged in but no callback 2?' : 'Logged out',
   );
 });
+
+router.get('/profile', requiresAuth(), (req, res) => {
+  res.send(JSON.stringify(req.oidc.user));
+});
+
 
 router.use('/api-docs', swaggerUi.serve);
 router.get('/api-docs', swaggerUi.setup(swaggerDocument));

@@ -7,7 +7,7 @@ const cors = require('cors');
 
 const mongodb = require('./db/connect');
 const routes = require('./routes/index');
-const { auth } = require('express-openid-connect');
+const {auth} = require('express-openid-connect');
 const path = require('path');
 
 const app = express();
@@ -17,9 +17,9 @@ const config = {
   authRequired: false,
   auth0Logout: true,
   secret: process.env.AUTH_SECRET,
-  baseURL: 'http://localhost:8080',
+  baseURL: process.env.AUTH_BASE_URL,
   clientID: process.env.AUTH_CLIENT_ID,
-  issuerBaseURL: 'https://dev-edpts3fn6awdy14x.us.auth0.com'
+  issuerBaseURL: process.env.AUTH_ISSUER_BASE_URL,
 };
 
 app.use(bodyParser.urlencoded({extended: true}));
