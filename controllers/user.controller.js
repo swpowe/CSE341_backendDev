@@ -6,4 +6,8 @@ const createUserForm = async () => {
   console.log('create user form controller');
 };
 
-module.exports = {createUser, createUserForm};
+const testUser = async () => {
+  console.log('TEST Function Called.');
+};
+
+module.exports = {createUser, createUserForm, testUser};
