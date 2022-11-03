@@ -2,6 +2,7 @@ const express = require('express');
 const {requiresAuth} = require('express-openid-connect');
 // eslint-disable-next-line new-cap
 const router = express.Router();
+const path = require('path');
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger-output.json');
@@ -26,12 +27,12 @@ router.get('/', (req, res) => {
   // res.send(req.oidc.isAuthenticated() ? 'Logged in but no callback 2?' : 'Logged out');
   if (req.oidc.isAuthenticated()) {
     console.log(req);
-    testUser();
+    res.sendFile(path.join(__dirname, '../views', 'main.html'));
     // authenticate / load mongo DB connection
   }
-  res.send(
-    req.oidc.isAuthenticated() ? 'Logged in but no callback 2?' : 'Logged out',
-  );
+  // res.send(
+  //   req.oidc.isAuthenticated() ? 'Logged in but no callback 2?' : 'Logged out',
+  // );
 });
 
 router.get('/profile', requiresAuth(), (req, res) => {
