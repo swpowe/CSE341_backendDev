@@ -11,6 +11,7 @@ const {auth} = require('express-openid-connect');
 const path = require('path');
 
 const app = express();
+app.set('view engine', 'ejs');
 
 const port = process.env.PORT || 8080;
 const config = {

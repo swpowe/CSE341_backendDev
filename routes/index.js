@@ -27,8 +27,9 @@ router.get('/', (req, res) => {
   // res.send(req.oidc.isAuthenticated() ? 'Logged in but no callback 2?' : 'Logged out');
   if (req.oidc.isAuthenticated()) {
     console.log(req.body);
-    res.sendFile(path.join(__dirname, '../views', 'main.html'));
-    // authenticate / load mongo DB connection
+    //!! res.sendFile(path.join(__dirname, '../views', 'main.html'));
+   const test = 'Why is this not working!';
+    res.render('main', {test: test});
   }
   // res.send(
   //   req.oidc.isAuthenticated() ? 'Logged in but no callback 2?' : 'Logged out',

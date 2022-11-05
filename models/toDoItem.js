@@ -3,18 +3,18 @@ const {Schema, model} = require('mongoose');
 const toDoItemSchema = new Schema({
   title: {
     type: String,
-    require: true,
+    required: true,
   },
   description: {
     type: String,
-    require: true,
+    required: true,
   },
 });
 
 const listSchema = new Schema({
   listName: {
     type: String,
-    require: true,
+    required: true,
   },
   items: [toDoItemSchema],
 });
