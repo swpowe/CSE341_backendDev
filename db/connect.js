@@ -5,7 +5,7 @@ const MongoClient = require('mongodb').MongoClient;
 
 const mongodb_username = process.env.MONGO_USR;
 const mongodb_password = process.env.MONGO_PWD;
-const uri = `mongodb+srv://${mongodb_username}:${mongodb_password}@cluster0.ku9wvjq.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${mongodb_username}:${mongodb_password}@cluster0.ku9wvjq.mongodb.net/final_project?retryWrites=true&w=majority`;
 // const uri = process.env.MONGODB_URI;
 
 let _db;

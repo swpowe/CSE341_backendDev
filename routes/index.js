@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
   // eslint-disable-next-line max-len
   // res.send(req.oidc.isAuthenticated() ? 'Logged in but no callback 2?' : 'Logged out');
   if (req.oidc.isAuthenticated()) {
-    console.log(req);
+    console.log(req.body);
     res.sendFile(path.join(__dirname, '../views', 'main.html'));
     // authenticate / load mongo DB connection
   }
@@ -43,13 +43,13 @@ router.get('/profile', requiresAuth(), (req, res) => {
 router.use('/api-docs', swaggerUi.serve);
 router.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
-router.get('/create-user', createUserForm);
-router.post('/create-user', createUser);
+router.get('/create-user', requiresAuth(), createUserForm);
+router.post('/create-user', requiresAuth(), createUser);
 
-router.get('/todos', getAllTodos);
-router.get('/todo/:id', getOneTodo);
+router.get('/todos', requiresAuth(), getAllTodos);
+router.get('/todo/:id', requiresAuth(), getOneTodo);
 router.post('/add-todo', addTodo);
-router.put('/modify-todo/:id', modifyTodo);
-router.delete('/delete-todo/:id', deleteTodo);
+router.put('/modify-todo/:id', requiresAuth(), modifyTodo);
+router.delete('/delete-todo/:id', requiresAuth(), deleteTodo);
 
 module.exports = router;

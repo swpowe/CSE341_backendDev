@@ -1,19 +1,23 @@
 const mongodb = require('../db/connect');
 const {ObjectId} = require('mongodb');
 
+const Item = require('../models/toDoItem');
+const ToDoItem = require('../models/toDoItem');
+
 const getAllTodos = async (req, res) => {
   console.log('get all todos controller');
 
-  const todos = await mongodb.getDb().db().collection('todos').find();
+  const todos = await mongodb.getDb().db().collection('lists').find();
   todos.toArray().then((items) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(items);
   });
-
-  // res.json({});
 };
+
 const getOneTodo = async (req, res) => {
   console.log('get One Todo controller');
+  // get form input
+  console.log(req);
 
   const todo = await mongodb
       .getDb()
@@ -22,14 +26,35 @@ const getOneTodo = async (req, res) => {
       .findOne({_id: new ObjectId(req.params.id)});
   res.status(201).json(todo);
 };
+
 const addTodo = async (req, res) => {
   console.log('Add To Do controller');
-  res.json({});
+  console.log(req.body);
+  const items = await mongodb.getDb().db().collection('lists');
+  const result = items.insertOne({title: 'man 2', description: 'geez 2'});
+
+
+  // console.log(mongodb.getDb('final_project'));
+
+  // const item = await Item.create({
+  //   listName: 'List One',
+  //   items: {title: ' To Do One List One', description: 'Description'},
+  // });
+  // console.log(item);
+
+  // res.json(item);
+  // await ToDoItem.createCollection('Lists');
+  // const item = await ToDoItem.create({title: 'title test', description: 'desc test'});
+
+
+  console.log(result);
 };
+
 const deleteTodo = async (req, res) => {
   console.log('Delete controller');
   res.json({});
 };
+
 const modifyTodo = async (req, res) => {
   console.log('modify todo controller');
   res.json({});
@@ -38,5 +63,6 @@ const modifyTodo = async (req, res) => {
 module.exports = {getAllTodos, getOneTodo, addTodo, deleteTodo, modifyTodo};
 
 
+// import meal model (the main model)
 
 
