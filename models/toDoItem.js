@@ -19,10 +19,10 @@ const listSchema = new Schema({
   items: [toDoItemSchema],
 });
 
-const ToDoItem = model('ToDoItem', toDoItemSchema);
-// const Item = model('Item', listSchema);
+// const ToDoItem = model('ToDoItem', toDoItemSchema);
+const Item = model('Item', listSchema);
 
 
-module.exports = ToDoItem;
-// module.exports = Item;
+// module.exports = ToDoItem;
+module.exports = Item;
 
