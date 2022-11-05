@@ -4,10 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EJS Main</title>
+    <title>To Do App</title>
 </head>
 <body>
-    <h1>this page</h1>
-    <h2><%= test %> </h2>
+<main>
+    <h1>Welcome to our To Do App!</h1>
+    <div id="items"></div>
+    <form action="http://localhost:8080/todos" method="get">
+        <button type="submit">Get All To Do Items</button>
+    </form>
+    <form action="http://localhost:8080/todo" method="get">
+        <input type="text" name="id" id="id">
+        <button type="submit">Get To Do item by ID</button>
+    </form>
+    <div id="error-message" style="display: <%= display %> ">Required info is missing. Try again.</div>
+    <form action="http://localhost:8080/add-todo" method="post">
+        <input type="text" name="listName" id="listName" placeholder="List Name">
+        <input type="text" name="title" id="title" placeholder="title">
+        <input type="text" name="description" id="description" placeholder="description">
+        <button type="submit">Add To Do</button>
+    </form>
+
+    <div>
+        <h1>Dynamic Content</h1>
+        <% for(let count = 0; count <= items.length; count++ ){ %>
+            <br>*<%= items[count] %>
+            <%#  will output the numbers 1-100 %>
+        <% } %>
+    </div>
+</main>
 </body>
 </html>

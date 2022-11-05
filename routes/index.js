@@ -28,8 +28,8 @@ router.get('/', (req, res) => {
   if (req.oidc.isAuthenticated()) {
     console.log(req.body);
     //!! res.sendFile(path.join(__dirname, '../views', 'main.html'));
-   const test = 'Why is this not working!';
-    res.render('main', {test: test});
+   const test = 'working...';
+    res.render('main', {items:[], display: 'none'});
   }
   // res.send(
   //   req.oidc.isAuthenticated() ? 'Logged in but no callback 2?' : 'Logged out',
@@ -49,7 +49,7 @@ router.post('/create-user', requiresAuth(), createUser);
 
 router.get('/todos', requiresAuth(), getAllTodos);
 router.get('/todo/:id', requiresAuth(), getOneTodo);
-router.post('/add-todo', addTodo);
+router.post('/add-todo', requiresAuth(), addTodo);
 router.put('/modify-todo/:id', requiresAuth(), modifyTodo);
 router.delete('/delete-todo/:id', requiresAuth(), deleteTodo);
 
