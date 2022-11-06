@@ -43,11 +43,15 @@
         console.log(JSON.parse(items[count])) %> <% const item =
         JSON.parse(items[count]) %>
         <br />*<%= items[count] %>
-        <form action="http://localhost:8080/todo" method="post">
+        <form action="http://localhost:8080/modify-todo" method="post">
             <input type="hidden" name="id" id="id" value="<%= item._id %>">
-            <button type="submit">Modify Form</button>
+            <button type="submit">Modify</button>
         </form>
-        <%# will output the numbers 1-100 %> <% } %>
+        <form action="http://localhost:8080/delete-todo" method="post">
+            <input type="hidden" name="id" id="id" value="<%= item._id %>">
+            <button type="submit">Delete</button>
+        </form>
+        <% } %>
       </div>
     </main>
   </body>
