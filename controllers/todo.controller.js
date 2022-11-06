@@ -66,7 +66,7 @@ const getOneTodo = async (req, res) => {
   const itemsArray = [];
   for await (const item of Item.findOne({_id: new ObjectId(req.body.id)})) {
     // console.log(item);
-    itemsArray.push(item);
+    itemsArray.push(JSON.stringify(item));
   }
   res.render('main', {items: itemsArray, display: 'none'});
 };
