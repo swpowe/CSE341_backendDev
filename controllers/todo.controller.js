@@ -12,8 +12,11 @@ const getAllTodos = async (req, res) => {
   
   for await (const item of Item.find()) {
     console.log(item);
-    itemsArray.push(item)
+    itemsArray.push(JSON.stringify(item));
+    
   }
+  // const id = itemsArray[0];
+  // console.log(`Single item: ${id._id}`);
   res.render('main', {items: itemsArray, display: 'none'});
   
   // const item = await Item.find().cursor();
@@ -50,14 +53,22 @@ const getAllTodos = async (req, res) => {
 const getOneTodo = async (req, res) => {
   console.log("get One Todo controller");
   // get form input
-  console.log(req);
+  // console.log(req);
 
-  const todo = await mongodb
-    .getDb()
-    .db()
-    .collection("todos")
-    .findOne({ _id: new ObjectId(req.params.id) });
-  res.status(201).json(todo);
+  // const todo = await mongodb
+  //   .getDb()
+  //   .db()
+  //   .collection("todos")
+  //   .findOne({ _id: new ObjectId(req.params.id) });
+  // res.status(201).json(todo);
+  await mongoose.connect(process.env.MONGODB_URI);
+  console.log(req.body.id);
+  const itemsArray = [];
+  for await (const item of Item.findOne({_id: new ObjectId(req.body.id)})) {
+    // console.log(item);
+    itemsArray.push(item);
+  }
+  res.render('main', {items: itemsArray, display: 'none'});
 };
 
 const addTodo = async (req, res) => {
@@ -78,6 +89,7 @@ const addTodo = async (req, res) => {
     res.status(200).send("<h1>added</h1>");
   } catch (error) {
     console.log(error);
+    res.status(400).render('main', {items: [], display: 'inline'});
   }
 };
 

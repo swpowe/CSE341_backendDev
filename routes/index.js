@@ -48,7 +48,7 @@ router.get('/create-user', requiresAuth(), createUserForm);
 router.post('/create-user', requiresAuth(), createUser);
 
 router.get('/todos', requiresAuth(), getAllTodos);
-router.get('/todo/:id', requiresAuth(), getOneTodo);
+router.post('/todo/', requiresAuth(), getOneTodo);
 router.post('/add-todo', requiresAuth(), addTodo);
 router.put('/modify-todo/:id', requiresAuth(), modifyTodo);
 router.delete('/delete-todo/:id', requiresAuth(), deleteTodo);

@@ -13,7 +13,7 @@
     <form action="http://localhost:8080/todos" method="get">
         <button type="submit">Get All To Do Items</button>
     </form>
-    <form action="http://localhost:8080/todo" method="get">
+    <form action="http://localhost:8080/todo" method="post">
         <input type="text" name="id" id="id">
         <button type="submit">Get To Do item by ID</button>
     </form>
@@ -27,11 +27,14 @@
 
     <div>
         <h1>Dynamic Content</h1>
-        <% for(let count = 0; count <= items.length; count++ ){ %>
-            <br>*<%= items[count] %>
+        <% for(let count = 0; count < items.length; count++ ){ %>
+            <% console.log(JSON.parse(items[count])) %> 
+            <% const item = JSON.parse(items[count]) %> 
+            <br>*<%= items[count] %> <button id="<%= item._id %>"  onclick="((event) => {
+                alert ('hi');
+            })(event)">Modify Item</button><button>Delete Item</button>
             <%#  will output the numbers 1-100 %>
         <% } %>
     </div>
 </main>
 </body>
-</html>
