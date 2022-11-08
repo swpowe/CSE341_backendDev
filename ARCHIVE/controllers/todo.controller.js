@@ -19,7 +19,7 @@ const getAllTodos = async (req, res) => {
       res.status(200).json(items);
     });
   } else {
-    res.status(200).send('No items to display');
+    res.status(400).send('No items to display');
   }
 };
 
