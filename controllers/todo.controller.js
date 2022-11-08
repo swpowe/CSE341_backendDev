@@ -12,7 +12,8 @@ const getAllTodos = async (req, res) => {
     console.log(item);
     itemsArray.push(JSON.stringify(item));
   }
-  res.render('main', {items: itemsArray, display: 'none'});
+  const count = itemsArray.length;
+  res.render('main', {items: itemsArray, display: 'none', itemsCount: count});
 };
 
 const getOneTodo = async (req, res) => {
@@ -24,11 +25,11 @@ const getOneTodo = async (req, res) => {
     for await (const item of Item.findOne({_id: new ObjectId(req.body.id)})) {
       itemsArray.push(JSON.stringify(item));
     }
-    res.render('main', {items: itemsArray, display: 'none'});
+    res.render('main', {items: itemsArray, display: 'none', itemsCount: 1});
   } catch (error) {
     console.log(`Error: ${error}`);
     itemsArray.push(JSON.stringify(error));
-    res.render('main', {items: itemsArray, display: 'inline'});
+    res.render('main', {items: itemsArray, display: 'inline', itemsCount: 0});
   }
 };
 
@@ -47,7 +48,7 @@ const addTodo = async (req, res) => {
     await mongoose.connect(process.env.MONGODB_URI);
     const item = await Item.create(newItem);
     console.log(item);
-    res.status(200).send('<h1>added</h1>');
+    res.status(200).redirect('/todos');
   } catch (error) {
     console.log(error);
     res.status(400).render('main', {items: [], display: 'inline'});
@@ -60,7 +61,7 @@ const deleteTodo = async (req, res) => {
     await mongoose.connect(process.env.MONGODB_URI);
     await Item.findByIdAndDelete({_id: new ObjectId(req.body.id)});
     // res.render('main', {items: itemsArray, display: 'none'});
-    res.status(200).send('<h1>Item was deleted</h1>');
+    res.status(200).redirect('/todos');
   } catch (error) {
     console.log(`Error: ${error}`);
     itemsArray.push(JSON.stringify(error));
