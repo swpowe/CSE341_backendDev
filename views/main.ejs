@@ -12,17 +12,17 @@
     <main>
       <h1>Welcome to our To Do App!</h1>
       <div id="items"></div>
-      <form action="http://localhost:8080/todos" method="get">
+      <form action="https://swpowe.onrender.com/todos" method="get">
         <button type="submit">Get All To Do Items</button>
       </form>
-      <form action="http://localhost:8080/todo" method="post">
+      <form action="https://swpowe.onrender.com/todo" method="post">
         <input type="text" name="id" id="id" />
         <button type="submit">Get To Do item by ID</button>
       </form>
       <div id="error-message" style="display: <%= display %>; color: red">
         Required info is missing. Try again.
       </div>
-      <form action="http://localhost:8080/add-todo" method="post">
+      <form action="https://swpowe.onrender.com/add-todo" method="post">
         <input
           type="text"
           name="listName"
@@ -46,11 +46,11 @@
         JSON.parse(items[count]) %>
         <br />*<%= items[count] %>
         <div class="buttons">
-          <form action="http://localhost:8080/modify-todo" method="post">
+          <form action="https://swpowe.onrender.com/modify-todo" method="post">
             <input type="hidden" name="id" id="id" value="<%= item._id %>">
             <button type="submit">Modify</button>
         </form>
-        <form action="http://localhost:8080/delete-todo" method="post">
+        <form action="https://swpowe.onrender.com/delete-todo" method="post">
             <input type="hidden" name="id" id="id" value="<%= item._id %>">
             <button type="submit">Delete</button>
         </form>
