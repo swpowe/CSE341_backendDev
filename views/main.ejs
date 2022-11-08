@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To Do App</title>
+    <style>
+    </style>
   </head>
   <body>
     <main>
@@ -43,7 +45,8 @@
         console.log(JSON.parse(items[count])) %> <% const item =
         JSON.parse(items[count]) %>
         <br />*<%= items[count] %>
-        <form action="http://localhost:8080/modify-todo" method="post">
+        <div class="buttons">
+          <form action="http://localhost:8080/modify-todo" method="post">
             <input type="hidden" name="id" id="id" value="<%= item._id %>">
             <button type="submit">Modify</button>
         </form>
@@ -51,6 +54,7 @@
             <input type="hidden" name="id" id="id" value="<%= item._id %>">
             <button type="submit">Delete</button>
         </form>
+        </div>
         <% } %>
       </div>
     </main>

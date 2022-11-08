@@ -51,6 +51,6 @@ router.get('/todos', requiresAuth(), getAllTodos);
 router.post('/todo/', requiresAuth(), getOneTodo);
 router.post('/add-todo', requiresAuth(), addTodo);
 router.put('/modify-todo/:id', requiresAuth(), modifyTodo);
-router.delete('/delete-todo/:id', requiresAuth(), deleteTodo);
+router.post('/delete-todo/', requiresAuth(), deleteTodo);
 
 module.exports = router;
