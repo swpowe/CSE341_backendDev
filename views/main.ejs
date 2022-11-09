@@ -47,11 +47,11 @@
         JSON.parse(items[count]) %>
         <br />*<%= items[count] %>
         <div class="buttons">
-          <form action="https://swpowe.onrender.com/modify-todo" method="post">
+          <form action="https://swpowe.onrender.com/modify-todo" method="POST">
             <input type="hidden" name="id" id="id" value="<%= item._id %>">
             <button type="submit">Modify</button>
         </form>
-        <form action="https://swpowe.onrender.com/delete-todo" method="post">
+        <form action="https://swpowe.onrender.com/delete-todo" method="POST">
             <input type="hidden" name="id" id="id" value="<%= item._id %>">
             <button type="submit">Delete</button>
         </form>

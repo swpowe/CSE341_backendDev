@@ -72,7 +72,19 @@ const deleteTodo = async (req, res) => {
 
 const modifyTodo = async (req, res) => {
   console.log('modify todo controller');
-  res.json({});
+  try {
+    await mongoose.connect(process.env.MONGODB_URI);
+    const testItem = {listName: 'modified list', items: {title: 'modified title', description: 'modified desct'}};
+    await Item.findOneAndUpdate({_id: new ObjectId(req.body.id)}, testItem, {new: false});
+    // res.render('main', {items: itemsArray, display: 'none'});
+    res.status(200).send('<h1>modified</h1>');
+    // res.status(200).redirect('/todos');
+  } catch (error) {
+    console.log(`Error: ${error}`);
+    // itemsArray.push(JSON.stringify(error));
+    res.status(404).send(`ERROR: ${error}`);
+    // res.render('main', {items: itemsArray, display: 'inline'});
+  }
 };
 
 module.exports = {getAllTodos, getOneTodo, addTodo, deleteTodo, modifyTodo};

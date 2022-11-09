@@ -49,7 +49,7 @@ router.post('/create-user', requiresAuth(), createUser);
 router.get('/todos', requiresAuth(), getAllTodos);
 router.post('/todo/', requiresAuth(), getOneTodo);
 router.post('/add-todo', requiresAuth(), addTodo);
-router.put('/modify-todo/:id', requiresAuth(), modifyTodo);
+router.post('/modify-todo/', requiresAuth(), modifyTodo);
 router.post('/delete-todo/', requiresAuth(), deleteTodo);
 
 module.exports = router;
