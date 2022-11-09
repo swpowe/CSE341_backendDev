@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
   // res.send(req.oidc.isAuthenticated() ? 'Logged in but no callback 2?' : 'Logged out');
   if (req.oidc.isAuthenticated()) {
     console.log(req.body);
-    res.render('main', {items: [], display: 'none'});
+    res.render('main', {items: [], display: 'none', itemsCount: 0});
   }
   res.redirect('/login');
   // res.send(
